@@ -1,0 +1,161 @@
+<?php
+
+class CS_Assistant_Frontend {
+    private $settings;
+    private $api;
+
+    public function __construct($settings, $api) {
+        $this->settings = $settings;
+        $this->api = $api;
+
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
+        add_action('wp_footer', array($this, 'render_chat_widget'));
+        
+        // AJAX hooks
+        add_action('wp_ajax_cs_assistant_get_chat_response', array($this, 'handle_chat_request'));
+        add_action('wp_ajax_nopriv_cs_assistant_get_chat_response', array($this, 'handle_chat_request'));
+    }
+
+    public function enqueue_assets() {
+        wp_enqueue_style('cs-assistant-style', CS_ASSISTANT_URL . 'assets/css/style.css', array(), CS_ASSISTANT_VERSION);
+        wp_enqueue_script('cs-assistant-script', CS_ASSISTANT_URL . 'assets/js/script.js', array('jquery'), CS_ASSISTANT_VERSION, true);
+
+        $options = $this->settings->get_settings();
+        wp_localize_script('cs-assistant-script', 'csAssistantData', array(
+            'ajax_url'      => admin_url('admin-ajax.php'),
+            'nonce'         => wp_create_nonce('cs-assistant-nonce'),
+            'primary_color' => isset($options['primary_color']) ? $options['primary_color'] : '#6366f1',
+            'assistant_name'=> isset($options['assistant_name']) ? $options['assistant_name'] : 'Assistant',
+            'welcome_msg'   => isset($options['welcome_msg']) ? $options['welcome_msg'] : 'Hello!',
+            'handoff_wording' => isset($options['handoff_wording']) ? $options['handoff_wording'] : 'Hubungkan ke Admin',
+            'whatsapp_number' => isset($options['whatsapp_number']) ? $options['whatsapp_number'] : '',
+            'enable_lead_gen' => isset($options['enable_lead_gen']) ? $options['enable_lead_gen'] : false,
+        ));
+    }
+
+    public function render_chat_widget() {
+        $options = $this->settings->get_settings();
+        $assistant_name = isset($options['assistant_name']) ? $options['assistant_name'] : 'Assistant';
+        $primary_color = isset($options['primary_color']) ? $options['primary_color'] : '#6366f1';
+        ?>
+        <div id="cs-assistant-widget" style="--primary-color: <?php echo esc_attr($primary_color); ?>;">
+            <!-- Floating Button -->
+            <button id="cs-assistant-toggle" class="cs-assistant-fab">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cs-svg-icon"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+            </button>
+
+            <!-- Chat Modal -->
+            <div id="cs-assistant-modal" class="cs-assistant-modal hidden">
+                <div class="cs-assistant-header">
+                    <div class="cs-assistant-info">
+                        <div class="cs-assistant-avatar">
+                            <span class="cs-assistant-status"></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3"/><path d="M12 7v2m0 6v2m-4-3h2m6 0h2"/></svg>
+                        </div>
+                        <div class="cs-assistant-titles">
+                            <h3><?php echo esc_html($assistant_name); ?></h3>
+                            <span>Online</span>
+                        </div>
+                    </div>
+                    <button id="cs-assistant-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="cs-svg-icon"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+                <div id="cs-assistant-messages" class="cs-assistant-messages">
+                    <?php if (isset($options['enable_lead_gen']) && $options['enable_lead_gen']): ?>
+                    <div id="cs-assistant-lead-form" class="cs-assistant-lead-form">
+                        <div class="cs-assistant-lead-form-header">
+                            <div class="icon-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </div>
+                            <p>Halo! Senang melihat Anda.</p>
+                            <span class="form-desc">Silakan isi data berikut untuk mulai mengobrol.</span>
+                        </div>
+                        
+                        <div class="cs-field-group">
+                            <label for="cs-lead-name">Nama Lengkap</label>
+                            <input type="text" id="cs-lead-name" placeholder="Contoh: Budi Santoso" required>
+                        </div>
+                        
+                        <div class="cs-field-group">
+                            <label for="cs-lead-phone">Nomor WhatsApp</label>
+                            <input type="text" id="cs-lead-phone" placeholder="Contoh: 08123456789" required>
+                        </div>
+                        
+                        <button id="cs-lead-submit">Mulai Percakapan</button>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <div class="cs-assistant-footer">
+                    <div class="cs-assistant-input-wrapper">
+                        <input type="text" id="cs-assistant-input" placeholder="Tulis pesan..." autocomplete="off">
+                        <button id="cs-assistant-send">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="cs-svg-icon"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                        </button>
+                    </div>
+                    <div class="cs-assistant-branding">Powered by <a href="https://maiarouter.ai" target="_blank">MAIAROUTER</a></div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    public function handle_chat_request() {
+        check_ajax_referer('cs-assistant-nonce', 'nonce');
+
+        $user_message = isset($_POST['message']) ? sanitize_text_field($_POST['message']) : '';
+        $user_name    = isset($_POST['user_name']) ? sanitize_text_field($_POST['user_name']) : 'Guest';
+        $user_phone   = isset($_POST['user_phone']) ? sanitize_text_field($_POST['user_phone']) : 'N/A';
+        $history_raw  = isset($_POST['history']) ? $_POST['history'] : '[]'; 
+        $history      = json_decode(stripslashes($history_raw), true);
+
+        // Tracking Lead to a log file
+        if ($user_name !== 'Guest') {
+            $log_entry = sprintf("[%s] Lead: %s | Phone: %s | Msg: %s\n", date('Y-m-d H:i:s'), $user_name, $user_phone, $user_message);
+            file_put_contents(CS_ASSISTANT_PATH . 'logs/leads.log', $log_entry, FILE_APPEND);
+        }
+        
+        if (empty($user_message)) {
+            wp_send_json_error('Empty message');
+        }
+
+        $options = $this->settings->get_settings();
+        $manual_context  = isset($options['company_context']) ? $options['company_context'] : 'You are a customer service assistant.';
+        $fetched_context = isset($options['fetched_context']) ? $options['fetched_context'] : '';
+        $file_context    = isset($options['file_context']) ? $options['file_context'] : '';
+        
+        $system_context = $manual_context . 
+                          "\n\nKnowledge Base from Website:\n" . $fetched_context . 
+                          "\n\nKnowledge Base from Document:\n" . $file_context;
+
+        $messages = array();
+        $messages[] = array('role' => 'system', 'content' => $system_context);
+        
+        // Add history (limit to last 10 messages for token efficiency)
+        if (is_array($history)) {
+            $history = array_slice($history, -10);
+            foreach ($history as $msg) {
+                if (isset($msg['role']) && isset($msg['content'])) {
+                    $messages[] = array(
+                        'role' => sanitize_text_field($msg['role']),
+                        'content' => sanitize_text_field($msg['content'])
+                    );
+                }
+            }
+        }
+
+        $messages[] = array('role' => 'user', 'content' => $user_message);
+
+        $response = $this->api->get_response($messages);
+
+        if (isset($response['error'])) {
+            wp_send_json_error($response['error']);
+        }
+
+        $bot_message = isset($response['choices'][0]['message']['content']) ? $response['choices'][0]['message']['content'] : 'Sorry, I could not process that.';
+
+        wp_send_json_success(array(
+            'message' => $bot_message
+        ));
+    }
+}
