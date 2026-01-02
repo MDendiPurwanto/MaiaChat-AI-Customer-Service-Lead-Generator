@@ -20,7 +20,7 @@ class Maia_Chat_Settings {
             'manage_options',
             'maia-chat-settings',
             array($this, 'create_admin_page'),
-            'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#a0a5aa" d="M15 14h-2V6.2l-2 2.1-2-2.1V14H7V4h2.5l1.5 1.6 1.5-1.6H15v10z"/></svg>'),
+            'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><text x="5" y="15" fill="#a0a5aa" font-family="sans-serif" font-size="16" font-weight="bold">M</text></svg>'),
             100
         );
 
@@ -37,10 +37,7 @@ class Maia_Chat_Settings {
     public function create_admin_page() {
         ?>
         <div class="wrap">
-            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                <img src="<?php echo MAIA_CHAT_URL . 'assets/images/maia-logo.png'; ?>" style="width: 50px; height: 50px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                <h1 style="margin: 0; padding: 0;"><?php _e('MaiaChat Settings', 'maia-chat'); ?></h1>
-            </div>
+            <h1><?php _e('MaiaChat Settings', 'maia-chat'); ?></h1>
             <form method="post" action="options.php">
             <?php
                 settings_fields('maia_chat_group');
