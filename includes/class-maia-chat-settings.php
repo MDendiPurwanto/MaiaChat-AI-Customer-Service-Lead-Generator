@@ -20,7 +20,7 @@ class Maia_Chat_Settings {
             'manage_options',
             'maia-chat-settings',
             array($this, 'create_admin_page'),
-            'dashicons-smartwatch',
+            MAIA_CHAT_URL . 'assets/images/menu-icon.png',
             100
         );
 
