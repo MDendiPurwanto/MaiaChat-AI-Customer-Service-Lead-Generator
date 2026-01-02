@@ -59,7 +59,7 @@ class Maia_Chat_Settings {
         add_settings_section(
             'maia_chat_general_section',
             __('General Configuration', 'maia-chat'),
-            null,
+            array($this, 'general_section_callback'),
             'maia-chat-settings'
         );
 
@@ -189,6 +189,14 @@ class Maia_Chat_Settings {
             array($this, 'enable_lead_gen_callback'),
             'maia-chat-settings',
             'maia_chat_tracking_section'
+        );
+    }
+
+    public function general_section_callback() {
+        printf('<p>%s <a href="%s" target="_blank">%s</a></p>', 
+            __('Untuk mendapatkan API Key dan melihat daftar model yang didukung, silakan kunjungi', 'maia-chat'),
+            'https://maiarouter.notion.site/MAIA-Router-API-Quick-Start-2a1e955fd85480738376ed283c352232',
+            __('Dokumentasi Resmi MaiaRouter', 'maia-chat')
         );
     }
 
