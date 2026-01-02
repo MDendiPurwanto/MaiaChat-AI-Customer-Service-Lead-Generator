@@ -7,6 +7,7 @@ MaiaChat is a premium AI customer service assistant for WordPress, powered by Ma
 - **Multi-Source Knowledge Base**: Automatically fetch content from URLs or upload .txt/.md files.
 - **Lead Generation**: Capture names and WhatsApp numbers before starting a conversation.
 - **WhatsApp Handoff**: Seamlessly redirect users to human agents via WhatsApp.
+- **Lead Logs**: Specialized dashboard for owners to track and follow-up with potential clients.
 - **Premium UI**: Modern, responsive chat widget with customizable branding.
 - **Markdown Rendering**: Clean, professional message formatting.
 
@@ -25,7 +26,7 @@ MaiaChat is a premium AI customer service assistant for WordPress, powered by Ma
 
 1. Upload the plugin folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Go to 'CS Assistant' in the admin menu to configure your MaiaRouter API key and branding.
+3. Go to **'MaiaChat'** in the admin menu to configure your MaiaRouter API key and branding.
 
 ## 📄 License
 This project is licensed under the GPLv2 or later.

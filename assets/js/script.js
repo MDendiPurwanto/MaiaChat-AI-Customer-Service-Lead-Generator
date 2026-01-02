@@ -1,55 +1,58 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const widget = document.getElementById('cs-assistant-widget');
-    const toggleBtn = document.getElementById('cs-assistant-toggle');
-    const modal = document.getElementById('cs-assistant-modal');
-    const closeBtn = document.getElementById('cs-assistant-close');
-    const messagesContainer = document.getElementById('cs-assistant-messages');
-    const inputField = document.getElementById('cs-assistant-input');
-    const sendBtn = document.getElementById('cs-assistant-send');
+    const widget = document.getElementById('maia-chat-widget');
+    const toggleBtn = document.getElementById('maia-chat-toggle');
+    const modal = document.getElementById('maia-chat-modal');
+    const closeBtn = document.getElementById('maia-chat-close');
+    const messagesContainer = document.getElementById('maia-chat-messages');
+    const inputField = document.getElementById('maia-chat-input');
+    const sendBtn = document.getElementById('maia-chat-send');
 
     let chatHistory = [];
     let isProcessing = false;
     let userData = null;
 
     // Handle Lead Gen
-    const leadForm = document.getElementById('cs-assistant-lead-form');
+    const leadForm = document.getElementById('maia-chat-lead-form');
     if (leadForm) {
         inputField.disabled = true;
         sendBtn.disabled = true;
 
-        document.getElementById('cs-lead-submit').addEventListener('click', () => {
-            const name = document.getElementById('cs-lead-name').value.trim();
-            const phone = document.getElementById('cs-lead-phone').value.trim();
+        const leadSubmitBtn = document.getElementById('maia-lead-submit');
+        if (leadSubmitBtn) {
+            leadSubmitBtn.addEventListener('click', () => {
+                const name = document.getElementById('maia-lead-name').value.trim();
+                const phone = document.getElementById('maia-lead-phone').value.trim();
 
-            if (name && phone) {
-                userData = { name, phone };
-                leadForm.style.display = 'none';
-                inputField.disabled = false;
-                sendBtn.disabled = false;
-                appendMessage('bot', csAssistantData.welcome_msg);
-                inputField.focus();
-            } else {
-                alert('Silakan isi data diri Anda.');
-            }
-        });
+                if (name && phone) {
+                    userData = { name, phone };
+                    leadForm.style.display = 'none';
+                    inputField.disabled = false;
+                    sendBtn.disabled = false;
+                    appendMessage('bot', maiaChatData.welcome_msg);
+                    inputField.focus();
+                } else {
+                    alert('Silakan isi data diri Anda.');
+                }
+            });
+        }
     }
 
     // Add Handoff Button
     const showHandoff = () => {
-        if (!csAssistantData.whatsapp_number) return;
+        if (!maiaChatData.whatsapp_number) return;
 
-        const existing = document.querySelector('.cs-assistant-handoff-container');
+        const existing = document.querySelector('.maia-chat-handoff-container');
         if (existing) existing.remove();
 
         const container = document.createElement('div');
-        container.className = 'cs-assistant-handoff-container';
+        container.className = 'maia-chat-handoff-container';
 
-        const waUrl = `https://wa.me/${csAssistantData.whatsapp_number}?text=Halo, saya ingin bertanya lebih lanjut setelah mengobrol dengan asisten.`;
+        const waUrl = `https://wa.me/${maiaChatData.whatsapp_number}?text=Halo, saya ingin bertanya lebih lanjut setelah mengobrol dengan asisten.`;
 
         container.innerHTML = `
-            <a href="${waUrl}" target="_blank" class="cs-assistant-handoff-btn">
+            <a href="${waUrl}" target="_blank" class="maia-chat-handoff-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                ${csAssistantData.handoff_wording}
+                ${maiaChatData.handoff_wording}
             </a>
         `;
         messagesContainer.appendChild(container);
@@ -57,19 +60,23 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Toggle Modal
-    toggleBtn.addEventListener('click', () => {
-        modal.classList.toggle('hidden');
-        if (!modal.classList.contains('hidden')) {
-            if (!csAssistantData.enable_lead_gen && messagesContainer.children.length === 0) {
-                appendMessage('bot', csAssistantData.welcome_msg);
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                if (!maiaChatData.enable_lead_gen && messagesContainer.children.length === 0) {
+                    appendMessage('bot', maiaChatData.welcome_msg);
+                }
+                if (!inputField.disabled) inputField.focus();
             }
-            if (!inputField.disabled) inputField.focus();
-        }
-    });
+        });
+    }
 
-    closeBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-    });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+    }
 
     // Send Message
     const sendMessage = async () => {
@@ -86,22 +93,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             const formData = new FormData();
-            formData.append('action', 'cs_assistant_get_chat_response');
+            formData.append('action', 'maia_chat_get_response');
             formData.append('message', text);
             if (userData) {
                 formData.append('user_name', userData.name);
                 formData.append('user_phone', userData.phone);
             }
             formData.append('history', JSON.stringify(chatHistory));
-            formData.append('nonce', csAssistantData.nonce);
+            formData.append('nonce', maiaChatData.nonce);
 
-            const response = await fetch(csAssistantData.ajax_url, {
+            const response = await fetch(maiaChatData.ajax_url, {
                 method: 'POST',
                 body: formData
             });
 
             const result = await response.json();
-
             typingIndicator.remove();
 
             if (result.success) {
@@ -117,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 appendMessage('error', 'Error: ' + (result.data || 'Something went wrong'));
             }
         } catch (error) {
-            typingIndicator.remove();
+            if (typingIndicator) typingIndicator.remove();
             appendMessage('error', 'Network error occurred.');
         } finally {
             isProcessing = false;
@@ -126,32 +132,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    sendBtn.addEventListener('click', sendMessage);
-    inputField.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
+    if (sendBtn) {
+        sendBtn.addEventListener('click', sendMessage);
+    }
+
+    if (inputField) {
+        inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    }
 
     function appendMessage(role, text) {
         const msgDiv = document.createElement('div');
-        msgDiv.className = `cs-assistant-msg ${role}`;
+        msgDiv.className = `maia-chat-msg ${role}`;
 
         if (role === 'bot') {
             let html = text;
 
-            // 1. Handle Markdown Links: [text](url) -> <a href="url">text</a>
+            // 1. Handle Markdown Links
             html = html.replace(/\[(.*?)\]\((https?:\/\/.*?)\)/g, function (match, label, url) {
-                return '<a href="' + url + '" target="_blank" class="cs-assistant-link">' + label + '</a>';
+                return '<a href="' + url + '" target="_blank" class="maia-chat-link">' + label + '</a>';
             });
 
-            // 2. Handle Raw Links: http://... -> <a href="...">http://...</a>
-            // (Only if not already inside an <a> tag)
+            // 2. Handle Raw Links
             const urlRegex = /(?<!href="|">)(https?:\/\/[^\s<)]+)/g;
             html = html.replace(urlRegex, function (url) {
                 let cleanUrl = url.replace(/[\.\,\?]+$/, '');
-                return '<a href="' + cleanUrl + '" target="_blank" class="cs-assistant-link">' + cleanUrl + '</a>';
+                return '<a href="' + cleanUrl + '" target="_blank" class="maia-chat-link">' + cleanUrl + '</a>';
             });
 
-            // 3. Handle Bold **text**
+            // 3. Handle Bold
             html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
             // 4. Handle Headers
@@ -178,11 +188,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function appendTypingIndicator() {
         const typingDiv = document.createElement('div');
-        typingDiv.className = 'cs-assistant-typing';
+        typingDiv.className = 'maia-chat-typing';
         typingDiv.innerHTML = `
-            <div class="cs-assistant-dot"></div>
-            <div class="cs-assistant-dot"></div>
-            <div class="cs-assistant-dot"></div>
+            <div class="maia-chat-dot"></div>
+            <div class="maia-chat-dot"></div>
+            <div class="maia-chat-dot"></div>
         `;
         messagesContainer.appendChild(typingDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;

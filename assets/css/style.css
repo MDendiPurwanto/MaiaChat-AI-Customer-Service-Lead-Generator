@@ -13,7 +13,7 @@
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-#cs-assistant-widget {
+#maia-chat-widget {
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -22,7 +22,7 @@
 }
 
 /* Floating Button */
-.cs-assistant-fab {
+.maia-chat-fab {
     width: 64px;
     height: 64px;
     border-radius: 32px;
@@ -37,19 +37,19 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.cs-assistant-fab:hover {
+.maia-chat-fab:hover {
     transform: scale(1.05) translateY(-2px);
     box-shadow: 0 25px 30px -5px rgb(0 0 0 / 0.15);
 }
 
-.cs-assistant-fab .cs-svg-icon {
+.maia-chat-fab .maia-svg-icon {
     width: 32px;
     height: 32px;
     flex-shrink: 0;
 }
 
 /* Modal Container */
-.cs-assistant-modal {
+.maia-chat-modal {
     position: absolute;
     bottom: 84px;
     right: 0;
@@ -68,14 +68,14 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.cs-assistant-modal.hidden {
+.maia-chat-modal.hidden {
     opacity: 0;
     transform: scale(0.9) translateY(20px);
     pointer-events: none;
 }
 
 /* Header */
-.cs-assistant-header {
+.maia-chat-header {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     padding: 20px 24px;
     color: white;
@@ -86,7 +86,7 @@
     overflow: hidden;
 }
 
-.cs-assistant-header::before {
+.maia-chat-header::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -97,14 +97,14 @@
     pointer-events: none;
 }
 
-.cs-assistant-info {
+.maia-chat-info {
     display: flex;
     align-items: center;
     gap: 16px;
     z-index: 1;
 }
 
-.cs-assistant-avatar {
+.maia-chat-avatar {
     width: 48px;
     height: 48px;
     background: rgba(255, 255, 255, 0.2);
@@ -117,7 +117,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.cs-assistant-status {
+.maia-chat-status {
     position: absolute;
     bottom: -2px;
     right: -2px;
@@ -128,20 +128,18 @@
     border-radius: 50%;
 }
 
-.cs-assistant-titles h3 {
+.maia-chat-titles h3 {
     margin: 0;
     font-size: 18px;
     font-weight: 700;
-    letter-spacing: -0.01em;
 }
 
-.cs-assistant-titles span {
+.maia-chat-titles span {
     font-size: 13px;
     opacity: 0.9;
-    font-weight: 500;
 }
 
-#cs-assistant-close {
+#maia-chat-close {
     background: rgba(255, 255, 255, 0.15);
     border: none;
     color: white;
@@ -156,19 +154,19 @@
     z-index: 1;
 }
 
-#cs-assistant-close .cs-svg-icon {
+#maia-chat-close .maia-svg-icon {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
 }
 
-#cs-assistant-close:hover {
+#maia-chat-close:hover {
     background: rgba(255, 255, 255, 0.25);
     transform: rotate(90deg);
 }
 
-/* Messages Area */
-.cs-assistant-messages {
+/* Messages */
+.maia-chat-messages {
     flex: 1;
     overflow-y: auto;
     padding: 24px;
@@ -178,8 +176,8 @@
     background: #fbfcfe;
 }
 
-/* Lead Form Card */
-.cs-assistant-lead-form {
+/* Lead Form */
+.maia-chat-lead-form {
     background: white;
     padding: 32px 24px;
     border-radius: 20px;
@@ -187,14 +185,11 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    border: 1px solid #f0f1f5;
     margin: auto 0;
-    width: 100%;
-    box-sizing: border-box;
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: maiaSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes slideUp {
+@keyframes maiaSlideUp {
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -206,78 +201,65 @@
     }
 }
 
-.cs-assistant-lead-form-header {
+.maia-chat-lead-form-header {
     text-align: center;
 }
 
-.cs-assistant-lead-form-header .icon-box {
+.maia-chat-lead-form-header .icon-box {
     width: 56px;
     height: 56px;
     background: #eef2ff;
     color: var(--primary-color);
     border-radius: 16px;
+    margin: 0 auto 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 16px;
 }
 
-.cs-assistant-lead-form-header p {
+.maia-chat-lead-form-header p {
     margin: 0;
     font-size: 18px;
-    color: #111827;
     font-weight: 700;
-    letter-spacing: -0.025em;
+    color: #111827;
 }
 
-.cs-assistant-lead-form-header .form-desc {
-    display: block;
+.maia-chat-lead-form-header .form-desc {
     font-size: 14px;
     color: #6b7280;
     margin-top: 6px;
-    line-height: 1.5;
 }
 
-.cs-field-group {
+.maia-field-group {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
 }
 
-.cs-field-group label {
+.maia-field-group label {
     font-size: 13px;
     font-weight: 600;
     color: #374151;
-    display: flex;
-    align-items: center;
-    gap: 6px;
 }
 
-.cs-assistant-lead-form input {
+.maia-chat-lead-form input {
     width: 100%;
     box-sizing: border-box;
     padding: 14px 16px;
     border: 2px solid #f3f4f6;
     border-radius: 12px;
     font-size: 15px;
-    transition: all 0.25s ease;
     background: #f9fafb;
-    color: #111827;
+    transition: all 0.25s;
 }
 
-.cs-assistant-lead-form input::placeholder {
-    color: #9ca3af;
-}
-
-.cs-assistant-lead-form input:focus {
+.maia-chat-lead-form input:focus {
     border-color: var(--primary-light);
     background: white;
     outline: none;
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
-#cs-lead-submit {
+#maia-lead-submit {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
     border: none;
@@ -286,23 +268,10 @@
     cursor: pointer;
     font-weight: 700;
     font-size: 16px;
-    margin-top: 4px;
-    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#cs-lead-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.4);
-    filter: brightness(1.1);
-}
-
-#cs-lead-submit:active {
-    transform: translateY(0);
-}
-
-/* Chat Messages */
-.cs-assistant-msg {
+/* Chat Bubbles */
+.maia-chat-msg {
     max-width: 85%;
     padding: 14px 18px;
     border-radius: 18px;
@@ -312,70 +281,87 @@
     word-wrap: break-word;
 }
 
-.cs-assistant-msg.bot {
+.maia-chat-msg.bot {
     align-self: flex-start;
     background: white;
     color: var(--text-color);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-    border-bottom-left-radius: 4px;
     border: 1px solid #f0f1f5;
+    border-bottom-left-radius: 4px;
 }
 
-.cs-assistant-msg li {
+.maia-chat-msg.user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border-top-right-radius: 4px;
+}
+
+.maia-chat-msg li {
     margin-left: 20px;
     margin-top: 8px;
     list-style: disc;
 }
 
-.cs-assistant-link {
+.maia-chat-link {
     color: inherit;
     text-decoration: underline;
     font-weight: 600;
 }
 
-.cs-assistant-msg.user {
-    align-self: flex-end;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: white;
-    border-top-right-radius: 4px;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+/* Typing Indicator */
+.maia-chat-typing {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    align-self: flex-start;
 }
 
-/* Footer Styling */
-.cs-assistant-footer {
+.maia-chat-dot {
+    width: 6px;
+    height: 6px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    animation: maiaTyping 1.4s infinite;
+}
+
+@keyframes maiaTyping {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Footer */
+.maia-chat-footer {
     padding: 20px 24px 12px;
     background: white;
     border-top: 1px solid #f3f4f6;
 }
 
-.cs-assistant-input-wrapper {
+.maia-chat-input-wrapper {
     display: flex;
     align-items: center;
     background: #f3f4f6;
     border-radius: 28px;
     padding: 4px 4px 4px 20px;
     gap: 12px;
-    transition: all 0.2s;
-    border: 1px solid transparent;
 }
 
-.cs-assistant-input-wrapper:focus-within {
-    background: white;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-}
-
-#cs-assistant-input {
+#maia-chat-input {
     flex: 1;
     background: transparent;
     border: none;
     outline: none;
     padding: 10px 0;
     font-size: 15px;
-    color: var(--text-color);
 }
 
-#cs-assistant-send {
+#maia-chat-send {
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -386,36 +372,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
     flex-shrink: 0;
 }
 
-#cs-assistant-send .cs-svg-icon {
+#maia-chat-send .maia-svg-icon {
     width: 24px;
     height: 24px;
-    flex-shrink: 0;
 }
 
-#cs-assistant-send:hover:not(:disabled) {
-    background: var(--primary-dark);
-    transform: scale(1.05);
-}
-
-#cs-assistant-send:disabled {
-    opacity: 0.5;
-    background: #cbd5e1;
-    cursor: not-allowed;
-}
-
-/* Handoff Button */
-.cs-assistant-handoff-container {
+/* Handoff */
+.maia-chat-handoff-container {
     text-align: center;
     margin-top: 20px;
     padding: 15px;
     border-top: 1px dashed #e5e7eb;
 }
 
-.cs-assistant-handoff-btn {
+.maia-chat-handoff-btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -424,47 +397,28 @@
     padding: 12px 24px;
     border-radius: 24px;
     text-decoration: none;
-    font-size: 14px;
     font-weight: 700;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
-.cs-assistant-handoff-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-}
-
-.cs-assistant-branding {
+.maia-chat-branding {
     text-align: center;
     font-size: 11px;
     color: #9ca3af;
     margin-top: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     font-weight: 600;
 }
 
-.cs-assistant-branding a {
+.maia-chat-branding a {
     color: var(--text-muted);
     text-decoration: none;
-    transition: color 0.2s;
-}
-
-.cs-assistant-branding a:hover {
-    color: var(--primary-color);
 }
 
 /* Scrollbar */
-.cs-assistant-messages::-webkit-scrollbar {
+.maia-chat-messages::-webkit-scrollbar {
     width: 4px;
 }
 
-.cs-assistant-messages::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.cs-assistant-messages::-webkit-scrollbar-thumb {
+.maia-chat-messages::-webkit-scrollbar-thumb {
     background: #e5e7eb;
     border-radius: 10px;
 }

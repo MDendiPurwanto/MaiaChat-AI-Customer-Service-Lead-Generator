@@ -1,19 +1,23 @@
 <?php
 
-class CS_Assistant_API {
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+class Maia_Chat_API {
     private $api_key;
     private $model;
     private $endpoint = 'https://api.maiarouter.ai/v1/chat/completions';
 
     public function __construct() {
-        $settings = get_option('cs_assistant_settings');
+        $settings = get_option('maia_chat_settings');
         $this->api_key = isset($settings['maia_api_key']) ? $settings['maia_api_key'] : '';
         $this->model = isset($settings['maia_model']) ? $settings['maia_model'] : 'maia/gemini-2.5-flash';
     }
 
     public function get_response($messages) {
         if (empty($this->api_key)) {
-            return array('error' => 'API Key not configured.');
+            return array('error' => __('API Key not configured.', 'maia-chat'));
         }
 
         $body = array(
@@ -40,7 +44,7 @@ class CS_Assistant_API {
         $data = json_decode($response_body, true);
 
         if ($status_code !== 200) {
-            $error_msg = isset($data['error']['message']) ? $data['error']['message'] : 'API Error ' . $status_code;
+            $error_msg = isset($data['error']['message']) ? $data['error']['message'] : sprintf(__('API Error %d', 'maia-chat'), $status_code);
             return array('error' => $error_msg);
         }
 
