@@ -1,0 +1,161 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MaiaChat 1.0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-03 10:55+0700\n"
+"PO-Revision-Date: 2026-01-03 10:55+0700\n"
+"Last-Translator: MaiaChat\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Domain: maia-chat\n"
+
+msgid "MaiaChat Settings"
+msgstr "Pengaturan MaiaChat"
+
+msgid "MaiaChat"
+msgstr "MaiaChat"
+
+msgid "Lead Logs"
+msgstr "Log Database"
+
+msgid "General Configuration"
+msgstr "Konfigurasi Umum"
+
+msgid "MaiaRouter API Key"
+msgstr "Kunci API MaiaRouter"
+
+msgid "MaiaRouter Model"
+msgstr "Model MaiaRouter"
+
+msgid "Assistant Name"
+msgstr "Nama Asisten"
+
+msgid "Primary Color"
+msgstr "Warna Utama"
+
+msgid "Welcome Message"
+msgstr "Pesan Selamat Datang"
+
+msgid "S3 Storage Configuration (Optional)"
+msgstr "Konfigurasi Penyimpanan S3 (Opsional)"
+
+msgid "Knowledge Base"
+msgstr "Basis Pengetahuan"
+
+msgid "Upload Document (.txt, .md)"
+msgstr "Unggah Dokumen (.txt, .md)"
+
+msgid "Knowledge Source (URL)"
+msgstr "Sumber Pengetahuan (URL)"
+
+msgid "Manual Context / Branding"
+msgstr "Konteks Manual / Branding"
+
+msgid "Fetched Content (Read Only)"
+msgstr "Konten Diambil (Hanya Baca)"
+
+msgid "Tracking & Human Agent Handoff"
+msgstr "Pelacakan & Handoff Agen Manusia"
+
+msgid "WhatsApp Number (for Human Agent)"
+msgstr "Nomor WhatsApp (untuk Agen Manusia)"
+
+msgid "Handoff Button Wording"
+msgstr "Kata-kata Tombol Handoff"
+
+msgid "Enable Lead Collection (Email/HP)"
+msgstr "Aktifkan Koleksi Lead (Email/HP)"
+
+msgid "Select File"
+msgstr "Pilih File"
+
+msgid "Remove"
+msgstr "Hapus"
+
+msgid "Upload file .txt atau .md."
+msgstr "Unggah file .txt atau .md."
+
+msgid "Masukkan URL untuk pengambilan informasi."
+msgstr "Masukkan URL untuk pengambilan informasi."
+
+msgid "No content yet."
+msgstr "Belum ada konten."
+
+msgid "Hubungkan ke Agen"
+msgstr "Hubungkan ke Agen"
+
+msgid "Aktifkan formulir Nama/No HP."
+msgstr "Aktifkan formulir Nama/No HP."
+
+msgid "Hello!"
+msgstr "Halo!"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Halo! Senang melihat Anda."
+msgstr "Halo! Senang melihat Anda."
+
+msgid "Silakan isi data berikut untuk mulai mengobrol."
+msgstr "Silakan isi data berikut untuk mulai mengobrol."
+
+msgid "Nama Lengkap"
+msgstr "Nama Lengkap"
+
+msgid "Contoh: Budi Santoso"
+msgstr "Contoh: Budi Santoso"
+
+msgid "Nomor WhatsApp"
+msgstr "Nomor WhatsApp"
+
+msgid "Contoh: 08123456789"
+msgstr "Contoh: 08123456789"
+
+msgid "Mulai Percakapan"
+msgstr "Mulai Percakapan"
+
+msgid "Tulis pesan..."
+msgstr "Tulis pesan..."
+
+msgid "Guest"
+msgstr "Tamu"
+
+msgid "Sorry, I could not process that."
+msgstr "Maaf, saya tidak dapat memproses permintaan tersebut."
+
+msgid "API Key not configured."
+msgstr "Kunci API belum dikonfigurasi."
+
+msgid "API Error %d"
+msgstr "Kesalahan API %d"
+
+msgid "MaiaChat Lead Logs"
+msgstr "Log Database MaiaChat"
+
+msgid "Riwayat interaksi pelanggan yang mengisi formulir Lead Generation."
+msgstr "Riwayat interaksi pelanggan yang mengisi formulir Lead Database."
+
+msgid "Waktu"
+msgstr "Waktu"
+
+msgid "Nama Pelanggan"
+msgstr "Nama Pelanggan"
+
+msgid "Pesan Terakhir"
+msgstr "Pesan Terakhir"
+
+msgid "Belum ada data lead masuk."
+msgstr "Belum ada data database masuk."
+
+msgid "File log tidak ditemukan atau belum ada interaksi."
+msgstr "File log tidak ditemukan atau belum ada interaksi."
+
+msgid "Untuk mendapatkan API Key dan melihat daftar model yang didukung, silakan kunjungi"
+msgstr "Untuk mendapatkan API Key dan melihat daftar model yang didukung, silakan kunjungi"
+
+msgid "Dokumentasi Resmi MaiaRouter"
+msgstr "Dokumentasi Resmi MaiaRouter"
