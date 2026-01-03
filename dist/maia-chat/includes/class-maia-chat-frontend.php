@@ -108,6 +108,20 @@ class Maia_Chat_Frontend {
         $history_raw  = isset($_POST['history']) ? wp_unslash($_POST['history']) : '[]'; 
         $history      = json_decode($history_raw, true);
 
+        // Sanitize history data
+        if (is_array($history)) {
+            foreach ($history as &$msg) {
+                if (isset($msg['role'])) {
+                    $msg['role'] = sanitize_text_field($msg['role']);
+                }
+                if (isset($msg['content'])) {
+                    $msg['content'] = sanitize_textarea_field($msg['content']);
+                }
+            }
+        } else {
+            $history = array();
+        }
+
         if ($user_name !== __('Guest', 'maia-chat')) {
             $log_entry = sprintf("[%s] Lead: %s | Phone: %s | Msg: %s\n", gmdate('Y-m-d H:i:s'), $user_name, $user_phone, $user_message);
             file_put_contents(MAIA_CHAT_PATH . 'logs/leads.log', $log_entry, FILE_APPEND);
