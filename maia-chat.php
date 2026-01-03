@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: MaiaChat: AI Customer Service & Lead Generator
- * Plugin URI: https://maiarouter.ai
+ * Plugin URI: https://maiarouter.ai/maia-chat
  * Description: Premium AI Customer Service Assistant for WordPress, powered by MaiaRouter. Features Knowledge Base, Lead Capture, and WhatsApp Handoff. 
  * Version: 1.0.4
  * Author: MaiaRouter
