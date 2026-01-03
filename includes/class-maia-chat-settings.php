@@ -15,8 +15,8 @@ class Maia_Chat_Settings {
 
     public function add_plugin_page() {
         add_menu_page(
-            __('MaiaChat Settings', 'maia-chat'),
-            __('MaiaChat', 'maia-chat'),
+            __('MaiaChat Settings', 'maiachat-ai-customer-service-lead-generator'),
+            __('MaiaChat', 'maiachat-ai-customer-service-lead-generator'),
             'manage_options',
             'maia-chat-settings',
             array($this, 'create_admin_page'),
@@ -26,8 +26,8 @@ class Maia_Chat_Settings {
 
         add_submenu_page(
             'maia-chat-settings',
-            __('Lead Logs', 'maia-chat'),
-            __('Lead Logs', 'maia-chat'),
+            __('Lead Logs', 'maiachat-ai-customer-service-lead-generator'),
+            __('Lead Logs', 'maiachat-ai-customer-service-lead-generator'),
             'manage_options',
             'maia-chat-leads',
             array($this, 'create_lead_logs_page')
@@ -37,7 +37,7 @@ class Maia_Chat_Settings {
     public function create_admin_page() {
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e('MaiaChat Settings', 'maia-chat'); ?></h1>
+            <h1><?php esc_html_e('MaiaChat Settings', 'maiachat-ai-customer-service-lead-generator'); ?></h1>
             <form method="post" action="options.php">
             <?php
                 settings_fields('maia_chat_group');
@@ -58,14 +58,14 @@ class Maia_Chat_Settings {
 
         add_settings_section(
             'maia_chat_general_section',
-            __('General Configuration', 'maia-chat'),
+            __('General Configuration', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'general_section_callback'),
             'maia-chat-settings'
         );
 
         add_settings_field(
             'maia_api_key',
-            __('MaiaRouter API Key', 'maia-chat'),
+            __('MaiaRouter API Key', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'maia_api_key_callback'),
             'maia-chat-settings',
             'maia_chat_general_section'
@@ -73,7 +73,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'maia_model',
-            __('MaiaRouter Model', 'maia-chat'),
+            __('MaiaRouter Model', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'maia_model_callback'),
             'maia-chat-settings',
             'maia_chat_general_section'
@@ -81,7 +81,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'assistant_name',
-            __('Assistant Name', 'maia-chat'),
+            __('Assistant Name', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'assistant_name_callback'),
             'maia-chat-settings',
             'maia_chat_general_section'
@@ -89,7 +89,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'primary_color',
-            __('Primary Color', 'maia-chat'),
+            __('Primary Color', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'primary_color_callback'),
             'maia-chat-settings',
             'maia_chat_general_section'
@@ -97,7 +97,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'welcome_msg',
-            __('Welcome Message', 'maia-chat'),
+            __('Welcome Message', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'welcome_msg_callback'),
             'maia-chat-settings',
             'maia_chat_general_section'
@@ -105,7 +105,7 @@ class Maia_Chat_Settings {
 
         add_settings_section(
             'maia_chat_s3_section',
-            __('S3 Storage Configuration (Optional)', 'maia-chat'),
+            __('S3 Storage Configuration (Optional)', 'maiachat-ai-customer-service-lead-generator'),
             null,
             'maia-chat-settings'
         );
@@ -123,14 +123,14 @@ class Maia_Chat_Settings {
 
         add_settings_section(
             'maia_chat_knowledge_section',
-            __('Knowledge Base', 'maia-chat'),
+            __('Knowledge Base', 'maiachat-ai-customer-service-lead-generator'),
             null,
             'maia-chat-settings'
         );
 
         add_settings_field(
             'knowledge_file',
-            __('Upload Document (.txt, .md)', 'maia-chat'),
+            __('Upload Document (.txt, .md)', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'knowledge_file_callback'),
             'maia-chat-settings',
             'maia_chat_knowledge_section'
@@ -138,7 +138,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'knowledge_url_base',
-            __('Knowledge Source (URL)', 'maia-chat'),
+            __('Knowledge Source (URL)', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'knowledge_url_callback'),
             'maia-chat-settings',
             'maia_chat_knowledge_section'
@@ -146,7 +146,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'company_context',
-            __('Manual Context / Branding', 'maia-chat'),
+            __('Manual Context / Branding', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'company_context_callback'),
             'maia-chat-settings',
             'maia_chat_knowledge_section'
@@ -154,7 +154,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'fetched_context',
-            __('Fetched Content (Read Only)', 'maia-chat'),
+            __('Fetched Content (Read Only)', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'fetched_context_callback'),
             'maia-chat-settings',
             'maia_chat_knowledge_section'
@@ -162,14 +162,14 @@ class Maia_Chat_Settings {
 
         add_settings_section(
             'maia_chat_tracking_section',
-            __('Tracking & Human Agent Handoff', 'maia-chat'),
+            __('Tracking & Human Agent Handoff', 'maiachat-ai-customer-service-lead-generator'),
             null,
             'maia-chat-settings'
         );
 
         add_settings_field(
             'whatsapp_number',
-            __('WhatsApp Number (for Human Agent)', 'maia-chat'),
+            __('WhatsApp Number (for Human Agent)', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'whatsapp_number_callback'),
             'maia-chat-settings',
             'maia_chat_tracking_section'
@@ -177,7 +177,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'handoff_wording',
-            __('Handoff Button Wording', 'maia-chat'),
+            __('Handoff Button Wording', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'handoff_wording_callback'),
             'maia-chat-settings',
             'maia_chat_tracking_section'
@@ -185,7 +185,7 @@ class Maia_Chat_Settings {
 
         add_settings_field(
             'enable_lead_gen',
-            __('Enable Lead Collection (Email/HP)', 'maia-chat'),
+            __('Enable Lead Collection (Email/HP)', 'maiachat-ai-customer-service-lead-generator'),
             array($this, 'enable_lead_gen_callback'),
             'maia-chat-settings',
             'maia_chat_tracking_section'
@@ -194,9 +194,9 @@ class Maia_Chat_Settings {
 
     public function general_section_callback() {
         printf('<p>%s <a href="%s" target="_blank">%s</a></p>', 
-            esc_html__('Untuk mendapatkan API Key dan melihat daftar model yang didukung, silakan kunjungi', 'maia-chat'),
+            esc_html__('Untuk mendapatkan API Key dan melihat daftar model yang didukung, silakan kunjungi', 'maiachat-ai-customer-service-lead-generator'),
             esc_url('https://maiarouter.notion.site/MAIA-Router-API-Quick-Start-2a1e955fd85480738376ed283c352232'),
-            esc_html__('Dokumentasi Resmi MaiaRouter', 'maia-chat')
+            esc_html__('Dokumentasi Resmi MaiaRouter', 'maiachat-ai-customer-service-lead-generator')
         );
     }
 
@@ -295,9 +295,9 @@ class Maia_Chat_Settings {
             <div id="knowledge_file_preview" style="margin-bottom:10px;">
                 <?php if ($file_url): ?><code><?php echo esc_html(basename($file_url)); ?></code><?php endif; ?>
             </div>
-            <button type="button" class="button" id="maia_chat_upload_btn"><?php esc_html_e('Select File', 'maia-chat'); ?></button>
-            <button type="button" class="button" id="maia_chat_remove_btn" <?php echo $file_id ? '' : 'style="display:none;"'; ?>><?php esc_html_e('Remove', 'maia-chat'); ?></button>
-            <p class="description"><?php esc_html_e('Upload file .txt atau .md.', 'maia-chat'); ?></p>
+            <button type="button" class="button" id="maia_chat_upload_btn"><?php esc_html_e('Select File', 'maiachat-ai-customer-service-lead-generator'); ?></button>
+            <button type="button" class="button" id="maia_chat_remove_btn" <?php echo $file_id ? '' : 'style="display:none;"'; ?>><?php esc_html_e('Remove', 'maiachat-ai-customer-service-lead-generator'); ?></button>
+            <p class="description"><?php esc_html_e('Upload file .txt atau .md.', 'maiachat-ai-customer-service-lead-generator'); ?></p>
         </div>
         <script>
             jQuery(document).ready(function($){
@@ -328,11 +328,11 @@ class Maia_Chat_Settings {
         printf('<input type="url" id="knowledge_url" name="maia_chat_settings[knowledge_url]" value="%s" class="large-text" />
             <p class="description">%s</p>',
             isset( $this->options['knowledge_url'] ) ? esc_url( $this->options['knowledge_url']) : '',
-            esc_html__('Masukkan URL untuk pengambilan informasi.', 'maia-chat'));
+            esc_html__('Masukkan URL untuk pengambilan informasi.', 'maiachat-ai-customer-service-lead-generator'));
     }
 
     public function fetched_context_callback() {
-        $content = isset( $this->options['fetched_context'] ) ? $this->options['fetched_context'] : __('No content yet.', 'maia-chat');
+        $content = isset( $this->options['fetched_context'] ) ? $this->options['fetched_context'] : __('No content yet.', 'maiachat-ai-customer-service-lead-generator');
         printf('<textarea id="fetched_context" readonly rows="10" class="large-text" style="background:#f0f1f2;">%s</textarea>', esc_textarea( $content ));
     }
 
@@ -343,12 +343,12 @@ class Maia_Chat_Settings {
 
     public function handoff_wording_callback() {
         printf('<input type="text" id="handoff_wording" name="maia_chat_settings[handoff_wording]" value="%s" class="regular-text" />', 
-            isset( $this->options['handoff_wording'] ) ? esc_attr( $this->options['handoff_wording']) : esc_attr__('Hubungkan ke Agen', 'maia-chat'));
+            isset( $this->options['handoff_wording'] ) ? esc_attr( $this->options['handoff_wording']) : esc_attr__('Hubungkan ke Agen', 'maiachat-ai-customer-service-lead-generator'));
     }
 
     public function enable_lead_gen_callback() {
         $checked = isset($this->options['enable_lead_gen']) && $this->options['enable_lead_gen'] ? 'checked' : '';
-        printf('<input type="checkbox" name="maia_chat_settings[enable_lead_gen]" value="1" %s /> %s', esc_attr($checked), esc_html__('Aktifkan formulir Nama/No HP.', 'maia-chat'));
+        printf('<input type="checkbox" name="maia_chat_settings[enable_lead_gen]" value="1" %s /> %s', esc_attr($checked), esc_html__('Aktifkan formulir Nama/No HP.', 'maiachat-ai-customer-service-lead-generator'));
     }
 
     public function get_settings() {
@@ -359,16 +359,16 @@ class Maia_Chat_Settings {
         $log_file = MAIA_CHAT_PATH . 'logs/leads.log';
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e('MaiaChat Lead Logs', 'maia-chat'); ?></h1>
-            <p><?php esc_html_e('Riwayat interaksi pelanggan yang mengisi formulir Lead Generation.', 'maia-chat'); ?></p>
+            <h1><?php esc_html_e('MaiaChat Lead Logs', 'maiachat-ai-customer-service-lead-generator'); ?></h1>
+            <p><?php esc_html_e('Riwayat interaksi pelanggan yang mengisi formulir Lead Generation.', 'maiachat-ai-customer-service-lead-generator'); ?></p>
             
             <table class="wp-list-table widefat fixed striped">
                 <thead>
                     <tr>
-                        <th width="20%"><?php esc_html_e('Waktu', 'maia-chat'); ?></th>
-                        <th width="20%"><?php esc_html_e('Nama Pelanggan', 'maia-chat'); ?></th>
-                        <th width="20%"><?php esc_html_e('Nomor WhatsApp', 'maia-chat'); ?></th>
-                        <th><?php esc_html_e('Pesan Terakhir', 'maia-chat'); ?></th>
+                        <th width="20%"><?php esc_html_e('Waktu', 'maiachat-ai-customer-service-lead-generator'); ?></th>
+                        <th width="20%"><?php esc_html_e('Nama Pelanggan', 'maiachat-ai-customer-service-lead-generator'); ?></th>
+                        <th width="20%"><?php esc_html_e('Nomor WhatsApp', 'maiachat-ai-customer-service-lead-generator'); ?></th>
+                        <th><?php esc_html_e('Pesan Terakhir', 'maiachat-ai-customer-service-lead-generator'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -392,10 +392,10 @@ class Maia_Chat_Settings {
                     }
 
                     if (empty($lines)) {
-                        echo '<tr><td colspan="4">' . esc_html__('Belum ada data lead masuk.', 'maia-chat') . '</td></tr>';
+                        echo '<tr><td colspan="4">' . esc_html__('Belum ada data lead masuk.', 'maiachat-ai-customer-service-lead-generator') . '</td></tr>';
                     }
                 } else {
-                    echo '<tr><td colspan="4">' . esc_html__('File log tidak ditemukan atau belum ada interaksi.', 'maia-chat') . '</td></tr>';
+                    echo '<tr><td colspan="4">' . esc_html__('File log tidak ditemukan atau belum ada interaksi.', 'maiachat-ai-customer-service-lead-generator') . '</td></tr>';
                 }
                 ?>
                 </tbody>

@@ -17,7 +17,7 @@ class Maia_Chat_API {
 
     public function get_response($messages) {
         if (empty($this->api_key)) {
-            return array('error' => __('API Key not configured.', 'maia-chat'));
+            return array('error' => __('API Key not configured.', 'maiachat-ai-customer-service-lead-generator'));
         }
 
         $body = array(
@@ -45,7 +45,7 @@ class Maia_Chat_API {
 
         if ($status_code !== 200) {
             /* translators: %d: API status code */
-            $error_msg = isset($data['error']['message']) ? $data['error']['message'] : sprintf(__('API Error %d', 'maia-chat'), $status_code);
+            $error_msg = isset($data['error']['message']) ? $data['error']['message'] : sprintf(__('API Error %d', 'maiachat-ai-customer-service-lead-generator'), $status_code);
             return array('error' => $error_msg);
         }
 

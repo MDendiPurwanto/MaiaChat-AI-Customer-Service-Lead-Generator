@@ -30,8 +30,8 @@ class Maia_Chat_Frontend {
             'nonce'         => wp_create_nonce('maia-chat-nonce'),
             'primary_color' => isset($options['primary_color']) ? $options['primary_color'] : '#6366f1',
             'assistant_name'=> isset($options['assistant_name']) ? $options['assistant_name'] : 'Maia Assistant',
-            'welcome_msg'   => isset($options['welcome_msg']) ? $options['welcome_msg'] : __('Hello!', 'maia-chat'),
-            'handoff_wording' => isset($options['handoff_wording']) ? $options['handoff_wording'] : __('Hubungkan ke Admin', 'maia-chat'),
+            'welcome_msg'   => isset($options['welcome_msg']) ? $options['welcome_msg'] : __('Hello!', 'maiachat-ai-customer-service-lead-generator'),
+            'handoff_wording' => isset($options['handoff_wording']) ? $options['handoff_wording'] : __('Hubungkan ke Admin', 'maiachat-ai-customer-service-lead-generator'),
             'whatsapp_number' => isset($options['whatsapp_number']) ? $options['whatsapp_number'] : '',
             'enable_lead_gen' => isset($options['enable_lead_gen']) ? $options['enable_lead_gen'] : false,
         ));
@@ -56,7 +56,7 @@ class Maia_Chat_Frontend {
                         </div>
                         <div class="maia-chat-titles">
                             <h3><?php echo esc_html($assistant_name); ?></h3>
-                            <span><?php esc_html_e('Online', 'maia-chat'); ?></span>
+                            <span><?php esc_html_e('Online', 'maiachat-ai-customer-service-lead-generator'); ?></span>
                         </div>
                     </div>
                     <button id="maia-chat-close">
@@ -70,24 +70,24 @@ class Maia_Chat_Frontend {
                             <div class="icon-box">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             </div>
-                            <p><?php esc_html_e('Halo! Senang melihat Anda.', 'maia-chat'); ?></p>
-                            <span class="form-desc"><?php esc_html_e('Silakan isi data berikut untuk mulai mengobrol.', 'maia-chat'); ?></span>
+                            <p><?php esc_html_e('Halo! Senang melihat Anda.', 'maiachat-ai-customer-service-lead-generator'); ?></p>
+                            <span class="form-desc"><?php esc_html_e('Silakan isi data berikut untuk mulai mengobrol.', 'maiachat-ai-customer-service-lead-generator'); ?></span>
                         </div>
                         <div class="maia-field-group">
-                            <label for="maia-lead-name"><?php esc_html_e('Nama Lengkap', 'maia-chat'); ?></label>
-                            <input type="text" id="maia-lead-name" placeholder="<?php esc_attr_e('Contoh: Budi Santoso', 'maia-chat'); ?>" required>
+                            <label for="maia-lead-name"><?php esc_html_e('Nama Lengkap', 'maiachat-ai-customer-service-lead-generator'); ?></label>
+                            <input type="text" id="maia-lead-name" placeholder="<?php esc_attr_e('Contoh: Budi Santoso', 'maiachat-ai-customer-service-lead-generator'); ?>" required>
                         </div>
                         <div class="maia-field-group">
-                            <label for="maia-lead-phone"><?php esc_html_e('Nomor WhatsApp', 'maia-chat'); ?></label>
-                            <input type="text" id="maia-lead-phone" placeholder="<?php esc_attr_e('Contoh: 08123456789', 'maia-chat'); ?>" required>
+                            <label for="maia-lead-phone"><?php esc_html_e('Nomor WhatsApp', 'maiachat-ai-customer-service-lead-generator'); ?></label>
+                            <input type="text" id="maia-lead-phone" placeholder="<?php esc_attr_e('Contoh: 08123456789', 'maiachat-ai-customer-service-lead-generator'); ?>" required>
                         </div>
-                        <button id="maia-lead-submit"><?php esc_html_e('Mulai Percakapan', 'maia-chat'); ?></button>
+                        <button id="maia-lead-submit"><?php esc_html_e('Mulai Percakapan', 'maiachat-ai-customer-service-lead-generator'); ?></button>
                     </div>
                     <?php endif; ?>
                 </div>
                 <div class="maia-chat-footer">
                     <div class="maia-chat-input-wrapper">
-                        <input type="text" id="maia-chat-input" placeholder="<?php esc_attr_e('Tulis pesan...', 'maia-chat'); ?>" autocomplete="off">
+                        <input type="text" id="maia-chat-input" placeholder="<?php esc_attr_e('Tulis pesan...', 'maiachat-ai-customer-service-lead-generator'); ?>" autocomplete="off">
                         <button id="maia-chat-send">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="maia-svg-icon"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                         </button>
@@ -103,7 +103,7 @@ class Maia_Chat_Frontend {
         check_ajax_referer('maia-chat-nonce', 'nonce');
 
         $user_message = isset($_POST['message']) ? sanitize_text_field(wp_unslash($_POST['message'])) : '';
-        $user_name    = isset($_POST['user_name']) ? sanitize_text_field(wp_unslash($_POST['user_name'])) : __('Guest', 'maia-chat');
+        $user_name    = isset($_POST['user_name']) ? sanitize_text_field(wp_unslash($_POST['user_name'])) : __('Guest', 'maiachat-ai-customer-service-lead-generator');
         $user_phone   = isset($_POST['user_phone']) ? sanitize_text_field(wp_unslash($_POST['user_phone'])) : 'N/A';
         $history_raw  = isset($_POST['history']) ? wp_unslash($_POST['history']) : '[]'; 
         $history      = json_decode($history_raw, true);
@@ -122,7 +122,7 @@ class Maia_Chat_Frontend {
             $history = array();
         }
 
-        if ($user_name !== __('Guest', 'maia-chat')) {
+        if ($user_name !== __('Guest', 'maiachat-ai-customer-service-lead-generator')) {
             $log_entry = sprintf("[%s] Lead: %s | Phone: %s | Msg: %s\n", gmdate('Y-m-d H:i:s'), $user_name, $user_phone, $user_message);
             file_put_contents(MAIA_CHAT_PATH . 'logs/leads.log', $log_entry, FILE_APPEND);
         }
@@ -162,7 +162,7 @@ class Maia_Chat_Frontend {
             wp_send_json_error($response['error']);
         }
 
-        $bot_message = isset($response['choices'][0]['message']['content']) ? $response['choices'][0]['message']['content'] : __('Sorry, I could not process that.', 'maia-chat');
+        $bot_message = isset($response['choices'][0]['message']['content']) ? $response['choices'][0]['message']['content'] : __('Sorry, I could not process that.', 'maiachat-ai-customer-service-lead-generator');
 
         wp_send_json_success(array(
             'message' => $bot_message

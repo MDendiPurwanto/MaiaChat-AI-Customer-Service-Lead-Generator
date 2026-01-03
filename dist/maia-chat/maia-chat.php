@@ -7,7 +7,7 @@
  * Author: MaiaRouter
  * Author URI: https://maiarouter.ai
  * License: GPLv2 or later
- * Text Domain: maia-chat
+ * Text Domain: maiachat-ai-customer-service-lead-generator
  * Domain Path: /languages
  */
 
