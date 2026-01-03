@@ -1,0 +1,161 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MaiaChat 1.0.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-03 10:55+0700\n"
+"PO-Revision-Date: 2026-01-03 10:55+0700\n"
+"Last-Translator: MaiaChat\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Domain: maia-chat\n"
+
+msgid "MaiaChat Settings"
+msgstr ""
+
+msgid "MaiaChat"
+msgstr ""
+
+msgid "Lead Logs"
+msgstr ""
+
+msgid "General Configuration"
+msgstr ""
+
+msgid "MaiaRouter API Key"
+msgstr ""
+
+msgid "MaiaRouter Model"
+msgstr ""
+
+msgid "Assistant Name"
+msgstr ""
+
+msgid "Primary Color"
+msgstr ""
+
+msgid "Welcome Message"
+msgstr ""
+
+msgid "S3 Storage Configuration (Optional)"
+msgstr ""
+
+msgid "Knowledge Base"
+msgstr ""
+
+msgid "Upload Document (.txt, .md)"
+msgstr ""
+
+msgid "Knowledge Source (URL)"
+msgstr ""
+
+msgid "Manual Context / Branding"
+msgstr ""
+
+msgid "Fetched Content (Read Only)"
+msgstr ""
+
+msgid "Tracking & Human Agent Handoff"
+msgstr ""
+
+msgid "WhatsApp Number (for Human Agent)"
+msgstr ""
+
+msgid "Handoff Button Wording"
+msgstr ""
+
+msgid "Enable Lead Collection (Email/HP)"
+msgstr ""
+
+msgid "Select File"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Upload file .txt atau .md."
+msgstr ""
+
+msgid "Masukkan URL untuk pengambilan informasi."
+msgstr ""
+
+msgid "No content yet."
+msgstr ""
+
+msgid "Hubungkan ke Agen"
+msgstr ""
+
+msgid "Aktifkan formulir Nama/No HP."
+msgstr ""
+
+msgid "Hello!"
+msgstr ""
+
+msgid "Online"
+msgstr ""
+
+msgid "Halo! Senang melihat Anda."
+msgstr ""
+
+msgid "Silakan isi data berikut untuk mulai mengobrol."
+msgstr ""
+
+msgid "Nama Lengkap"
+msgstr ""
+
+msgid "Contoh: Budi Santoso"
+msgstr ""
+
+msgid "Nomor WhatsApp"
+msgstr ""
+
+msgid "Contoh: 08123456789"
+msgstr ""
+
+msgid "Mulai Percakapan"
+msgstr ""
+
+msgid "Tulis pesan..."
+msgstr ""
+
+msgid "Guest"
+msgstr ""
+
+msgid "Sorry, I could not process that."
+msgstr ""
+
+msgid "API Key not configured."
+msgstr ""
+
+msgid "API Error %d"
+msgstr ""
+
+msgid "MaiaChat Lead Logs"
+msgstr ""
+
+msgid "Riwayat interaksi pelanggan yang mengisi formulir Lead Generation."
+msgstr ""
+
+msgid "Waktu"
+msgstr ""
+
+msgid "Nama Pelanggan"
+msgstr ""
+
+msgid "Pesan Terakhir"
+msgstr ""
+
+msgid "Belum ada data lead masuk."
+msgstr ""
+
+msgid "File log tidak ditemukan atau belum ada interaksi."
+msgstr ""
+
+msgid "Untuk mendapatkan API Key dan melihat daftar model yang didukung, silakan kunjungi"
+msgstr ""
+
+msgid "Dokumentasi Resmi MaiaRouter"
+msgstr ""

@@ -1,0 +1,424 @@
+:root {
+    --primary-color: #6366f1;
+    --primary-light: #818cf8;
+    --primary-dark: #4f46e5;
+    --bg-color: #ffffff;
+    --text-color: #1f2937;
+    --text-muted: #6b7280;
+    --border-radius-lg: 20px;
+    --border-radius-md: 12px;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#maia-chat-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999999;
+    font-family: var(--font-family);
+}
+
+/* Floating Button */
+.maia-chat-fab {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.maia-chat-fab:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 25px 30px -5px rgb(0 0 0 / 0.15);
+}
+
+.maia-chat-fab .maia-svg-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+/* Modal Container */
+.maia-chat-modal {
+    position: absolute;
+    bottom: 84px;
+    right: 0;
+    width: 400px;
+    max-width: calc(100vw - 40px);
+    height: 650px;
+    max-height: calc(100vh - 120px);
+    background: var(--bg-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: bottom right;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.maia-chat-modal.hidden {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    pointer-events: none;
+}
+
+/* Header */
+.maia-chat-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    padding: 20px 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.maia-chat-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.maia-chat-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 1;
+}
+
+.maia-chat-avatar {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.maia-chat-status {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    background: #10b981;
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+}
+
+.maia-chat-titles h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.maia-chat-titles span {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+#maia-chat-close {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 1;
+}
+
+#maia-chat-close .maia-svg-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+#maia-chat-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: rotate(90deg);
+}
+
+/* Messages */
+.maia-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #fbfcfe;
+}
+
+/* Lead Form */
+.maia-chat-lead-form {
+    background: white;
+    padding: 32px 24px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: auto 0;
+    animation: maiaSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes maiaSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.maia-chat-lead-form-header {
+    text-align: center;
+}
+
+.maia-chat-lead-form-header .icon-box {
+    width: 56px;
+    height: 56px;
+    background: #eef2ff;
+    color: var(--primary-color);
+    border-radius: 16px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.maia-chat-lead-form-header p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.maia-chat-lead-form-header .form-desc {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 6px;
+}
+
+.maia-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.maia-field-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.maia-chat-lead-form input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    border: 2px solid #f3f4f6;
+    border-radius: 12px;
+    font-size: 15px;
+    background: #f9fafb;
+    transition: all 0.25s;
+}
+
+.maia-chat-lead-form input:focus {
+    border-color: var(--primary-light);
+    background: white;
+    outline: none;
+}
+
+#maia-lead-submit {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* Chat Bubbles */
+.maia-chat-msg {
+    max-width: 85%;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.6;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.maia-chat-msg.bot {
+    align-self: flex-start;
+    background: white;
+    color: var(--text-color);
+    border: 1px solid #f0f1f5;
+    border-bottom-left-radius: 4px;
+}
+
+.maia-chat-msg.user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border-top-right-radius: 4px;
+}
+
+.maia-chat-msg li {
+    margin-left: 20px;
+    margin-top: 8px;
+    list-style: disc;
+}
+
+.maia-chat-link {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Typing Indicator */
+.maia-chat-typing {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    align-self: flex-start;
+}
+
+.maia-chat-dot {
+    width: 6px;
+    height: 6px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    animation: maiaTyping 1.4s infinite;
+}
+
+@keyframes maiaTyping {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Footer */
+.maia-chat-footer {
+    padding: 20px 24px 12px;
+    background: white;
+    border-top: 1px solid #f3f4f6;
+}
+
+.maia-chat-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #f3f4f6;
+    border-radius: 28px;
+    padding: 4px 4px 4px 20px;
+    gap: 12px;
+}
+
+#maia-chat-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    font-size: 15px;
+}
+
+#maia-chat-send {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#maia-chat-send .maia-svg-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Handoff */
+.maia-chat-handoff-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px dashed #e5e7eb;
+}
+
+.maia-chat-handoff-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25d366;
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.maia-chat-branding {
+    text-align: center;
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 16px;
+    font-weight: 600;
+}
+
+.maia-chat-branding a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+/* Scrollbar */
+.maia-chat-messages::-webkit-scrollbar {
+    width: 4px;
+}
+
+.maia-chat-messages::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 10px;
+}
